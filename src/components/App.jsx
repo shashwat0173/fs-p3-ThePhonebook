@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import phoneService from '../services/phoneService'
 import Form from './Form'
 import Numbers from './Numbers'
 
@@ -9,10 +9,10 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   
   useEffect(() => {
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        setPersons(response.data)
+    phoneService
+      .getAll()
+      .then(personObjects => {
+        setPersons(personObjects)
       })
   }, [])
 
@@ -21,7 +21,7 @@ const App = () => {
       <h2>Phonebook</h2>
 
       <Form persons = {persons} setPersons = {setPersons} newName = {newName} setNewName = {setNewName} newNumber = {newNumber} setNewNumber = {setNewNumber}/>
-      <Numbers persons={persons}/>
+      <Numbers persons={persons} setPersons={setPersons}/>
       
     </div>
   )

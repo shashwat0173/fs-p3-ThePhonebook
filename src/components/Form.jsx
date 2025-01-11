@@ -1,3 +1,5 @@
+import phonebookService from '../services/phoneService'
+
 const Form = ({persons,setPersons,newName,setNewName,newNumber,setNewNumber}) => {
 
     const handleNewNameOnChange = (event) => {
@@ -20,9 +22,15 @@ const Form = ({persons,setPersons,newName,setNewName,newNumber,setNewNumber}) =>
           name: newName,
           number: newNumber
         }
-        setPersons(persons.concat(personObject))
-        setNewName('')
-        setNewNumber('')
+
+        phonebookService
+          .create(personObject)
+          .then( personObject => {
+              setPersons(persons.concat(personObject))
+              setNewName('')
+              setNewNumber('')
+            }
+          )
     }
 
     return (
