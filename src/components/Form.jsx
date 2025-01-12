@@ -1,6 +1,6 @@
 import phonebookService from '../services/phoneService'
 
-const Form = ({persons,setPersons,newName,setNewName,newNumber,setNewNumber}) => {
+const Form = ({persons,setPersons,newName,setNewName,newNumber,setNewNumber,setNotificationMessage}) => {
 
     const handleNewNameOnChange = (event) => {
         setNewName(event.target.value)
@@ -29,6 +29,14 @@ const Form = ({persons,setPersons,newName,setNewName,newNumber,setNewNumber}) =>
               setPersons(persons.concat(personObject))
               setNewName('')
               setNewNumber('')
+
+              setNotificationMessage(`Added ${personObject.name}`)
+
+              setTimeout(
+                () => {
+                  setNotificationMessage(null)
+                }, 5000) 
+
             }
           )
     }
