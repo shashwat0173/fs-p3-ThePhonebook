@@ -5,12 +5,17 @@ import phoneService from '../services/phoneService'
 const Person = ({name, number, id, persons, setPersons}) => {
 
     const handleDeleteOf = (id) => {
+        console.log(`Attempting to delete person with id: ${id}`);
         window.confirm(`Delete ${name}?`) &&
         phoneService
             .remove(id)
             .then(deletedPerson => {
-                setPersons(persons.filter(person => person.id !== deletedPerson.id))
+                console.log(`Deleted person with id: ${deletedPerson.id}`);
+                setPersons(persons.filter(person => person.id !== deletedPerson.id));
             })
+            .catch(error => {
+                console.error(`Failed to delete person with id: ${id}`, error);
+            });
     }
 
     return (

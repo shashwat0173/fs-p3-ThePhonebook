@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <div>
-      <h2>Phonebook</h2>
+      <h2>Phonebook</h2> 
       <Notifications message={notificationMessage}/>
       <Form persons = {persons} setPersons = {setPersons} newName = {newName} setNewName = {setNewName} newNumber = {newNumber} setNewNumber = {setNewNumber} setNotificationMessage={setNotificationMessage}/>
       <Numbers persons={persons} setPersons={setPersons}/>
